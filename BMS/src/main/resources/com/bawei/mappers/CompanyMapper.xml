@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bawei.dao.CompanyDao">
+
+	<resultMap type="Company" id="CompanyResult">
+		<result property="id" column="id"/>
+		<result property="GSName" column="GSName"/>
+		<result property="GSFunds" column="GSFunds"/>
+		<result property="GSPeople" column="GSPeople"/>
+		<result property="GSMarket" column="GSMarket"/>
+		<result property="GSEcoType" column="GSEcoType"/>
+	</resultMap>
+
+	<insert id="add" parameterType="Company">
+		insert into t_gongsi values(null,#{GSName},#{GSFunds},#{GSPeople},#{GSMarket},#{GSEcoType})
+	</insert>
+	
+	<select id="list" resultMap="CompanyResult">
+		select * from t_gongsi
+	</select>
+	
+	<select id="findByyouxian" resultMap="CompanyResult">
+		select * from t_gongsi where GSEcoType = '有限公司'
+	</select>
+	
+	<select id="findByGuFen" resultMap="CompanyResult">
+		select * from t_gongsi where GSEcoType = '股份公司'
+	</select>
+	
+	<select id="findByGuQi" resultMap="CompanyResult">
+		select * from t_gongsi where GSEcoType = '国企'
+	</select>
+	
+	<select id="findByOther" resultMap="CompanyResult">
+		select * from t_gongsi where GSEcoType not in ('有限公司','股份公司','国企')
+	</select>
+	
+	<select id="findBylittleFunds" resultMap="CompanyResult">
+		select * from t_gongsi where GSFunds &lt;= 2000000
+	</select>
+	
+	<select id="findBymiddleFunds" resultMap="CompanyResult">
+		select * from t_gongsi where GSFunds &gt; 2000000 and GSFunds &lt;= 10000000
+	</select>
+	
+	<select id="findBybigFunds" resultMap="CompanyResult">
+		select * from t_gongsi where GSFunds &gt; 10000000
+	</select>
+	
+</mapper> 

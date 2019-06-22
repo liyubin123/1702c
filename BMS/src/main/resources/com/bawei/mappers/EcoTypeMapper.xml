@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bawei.dao.EcoTypeDao">
+
+	<resultMap type="EcoType" id="EcoTypeResult">
+		<result property="EcoId" column="EcoId"/>
+		<result property="EcoTypeName" column="EcoTypeName"/>
+	</resultMap>
+
+	<insert id="add" parameterType="EcoType">
+		insert into t_ecotype values(null,#{EcoTypeName});
+	</insert>
+	
+	<select id="list" resultMap="EcoTypeResult">
+		select * from t_ecotype
+	</select>
+	
+</mapper> 
