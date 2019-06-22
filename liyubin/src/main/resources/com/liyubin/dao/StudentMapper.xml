@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liyubin.dao.Dao">
+	<insert id="add1">
+	insert into a values
+	<foreach collection="list" item="b" separator=",">
+	(null,#{b.bname},#{b.rmb},#{b.rs},#{b.ss},#{b.bid})
+	</foreach>
+	</insert>
+	<select id="list" resultType="User">
+	select * from a
+	</select>
+</mapper>
